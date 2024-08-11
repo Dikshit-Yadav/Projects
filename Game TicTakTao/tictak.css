@@ -1,0 +1,47 @@
+body {
+    text-align: center;
+    background: #977390;
+}
+
+.win {
+    display: none;
+    height: 50px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.container {
+    text-align: center;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameBox {
+    height: 60vh;
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    grid-gap: 5px;
+}
+
+.btn {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.4);
+    color: #785589;
+    font-size: 3rem;
+    background: #FFFACD;
+}
+
+.reset {
+    background-color: #0d160b;
+    color: #fff;
+    height: 50px;
+    width: 120px;
+    border-radius: 10px;
+    border: none;
+    position: relative;
+    bottom: 100px;
+}

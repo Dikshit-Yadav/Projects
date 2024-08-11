@@ -1,0 +1,29 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200%;
+    gap: 3px;
+}
+
+.left,
+.right {
+    border: 1px solid black;
+}
+
+button,
+input {
+    position: relative;
+    top: 10px;
+    left: 20px;
+    height: 28px;
+}
+h1{
+    text-align: center;
+}
+
+#myId{
+    display:"inline-block";
+    position : "relative";
+    left : "100px";
+    bottom : "18px";
+}

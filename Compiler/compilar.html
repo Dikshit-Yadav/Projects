@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="comillar.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Compiler</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Code Compiler</h1>
+        <select id="languageSelect">
+            <option value="0">Python</option>
+            <option value="4"selected>JavaScript</option>
+            <option value="7" >C</option>
+            <option value="77">C++</option>
+            <option value="8">Java</option>
+        </select>
+        <textarea id="codeEditor" class="text" placeholder="Write your code here"></textarea>
+            <button id="comBtn">Compile</button>
+            <span id="tex">Output:</span>
+            <div id="output" class="output"></div>
+    </div>
+    <script src="compilar.js"></script>
+</body>
+
+</html>

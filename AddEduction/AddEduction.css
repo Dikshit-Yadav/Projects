@@ -1,0 +1,77 @@
+body {
+    background-image: url(forms.png);
+    background-size: cover;
+}
+
+#AddEduction {
+    width: 40%;
+    height: 50px;
+    background-color: #2cbaf6cc;
+    border-radius: 10px;
+    margin: auto 30%;
+    color: white;
+    font-size: 1.2rem;
+    border: 2px solid white;
+}
+
+#form {
+    height: 350px;
+    width: 35%;
+    position: relative;
+    top: 20px;
+    margin: auto 33%;
+    display: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+input {
+    height: 30px;
+    width: 50%;
+    margin-left: 255px;
+    position: relative;
+    bottom: 20px;
+    border: 1px solid black;
+}
+
+label {
+    font-size: x-large;
+    position: relative;
+    top: 10px;
+}
+
+#submit {
+    height: 35px;
+    width: 20%;
+    color: white;
+    font-weight: 700;
+    background-color: green;
+    border-radius: 7px;
+    margin-left: 5px;
+    position: relative;
+    bottom: 20px;
+}
+
+#reset {
+    height: 35px;
+    width: 20%;
+    background: red;
+    color: white;
+    font-weight: 700;
+    border-radius: 7px;
+    margin-left: 418px;
+    position: relative;
+    bottom: 55px;
+}
+
+#details {
+    display: none;
+}
+
+table {
+    margin: auto 30%;
+}

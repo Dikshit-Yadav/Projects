@@ -1,0 +1,54 @@
+body {
+
+font-family: Arial, sans-serif;
+ 
+}
+
+
+.portal {
+background-color: rgb(6, 141, 132); width: 675px;
+color: white; padding: 10px;
+}
+
+
+.left {
+width: 30%; float: left; padding: 10px;
+}
+
+
+#searchInput { height: 25px;
+}
+
+
+.questionBox {
+border: 1px solid #ccc; position: relative;
+top: 20px; height: 233px;
+ 
+width: 300px;
+background: rgba(244, 234, 234, 0.628);
+}
+
+
+
+.right {
+position: relative; left: 320px; bottom: 310px; width: 70%; float: left; padding: 10px;
+}
+
+
+h5 {
+font-weight: 600; font-size: x-small; position: relative; bottom: 13px; left: 1px;
+}
+
+
+#questionTitle { position: relative; bottom: 10px;
+ 
+height: 25px;
+}
+
+
+
+button {
+position: relative; top: 25px;
+right: 63px;
+
+}
