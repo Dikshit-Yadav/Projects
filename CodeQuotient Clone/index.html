@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="log.jpeg" type="image/x">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CQST</title>
+</head>
+
+<body>
+    <div id="container">
+        <div class="logo-image"></div>
+        <div class="items">
+            <input type="checkbox" id="click" class="daba1">
+            <label for="click"><i class="fa-solid fa-bars"></i></label>
+            <div class="container2">
+                <input type="checkbox" id="click" class="daba1">
+                <label for="click"><i class="fa-solid fa-xmark" id="cross1"></i></label>
+                <div class="logo-image2"></div>
+                <p class="daba2"> <a href="#">Home</a></p>
+                <p class="daba2"><a href="#"> About</a></p>
+                <p class="daba2"><a href="#">Contact Us</a></p>
+                <p class="daba2"><a href="#">FAQ</a></p>
+                <p class="daba2"><button id="reg2">Register</button></p>
+                <!-- <p class="daba2"><button id="information">Information</button></p> -->
+            </div>
+            <p class="daba1"><a href="#">Home</a></p>
+            <p class="daba1"><a href="#"> About</a></p>
+            <p class="daba1"><a href="#">Contact Us</a></p>
+            <p class="daba1"><a href="#">FAQ</a></p>
+            <p class="daba1"><button id="reg">Register</button></p>
+            <!-- <p class="daba1"><button id="information">Information</button></p> -->
+            <!-- <a href="Form.html", class="daba2" target="_"><button id="reg2">Register</button></a> -->
+        </div>
+    </div>
+
+    <div class="login">
+        <form id="form">
+            <div class="left">
+                <h1 style="color: rgb(125, 125, 206);text-align: center;">General Information</h1>
+                <label for="name">Name:</label>
+                <input type="text" id="nme" name="nme" style="margin-left: 2.5rem;"><br><br>
+
+                <label for="dob">D.O.B:</label>
+                <input type="date" id="dob" name="dob" style="margin-left: 2.2rem;" required><br><br>
+
+                <label for="sex">Sex:</label>
+                <select name="sex" id="sex" style="margin-left: 3.4rem;">
+                    <option value="select">Select</option>
+                    <option value="male" selected>Male</option>
+                    <option value="female">Female</option>
+                    <option value="trans">Trans</option>
+                </select><br><br>
+
+                <label for="collage">College:</label>
+                <select name="college" id="college" style="margin-left: 1.5rem;" required>
+                    <option value="select">Select</option>
+                    <option value="Government College (Bhiwani)" selected>Government College (Bhiwani)</option>
+                    <option value="Vaish College (Bhiwani)">Vaish College (Bhiwani)</option>
+                    <option value="Ch. Chran Singh College (Jhajjer)">Ch. Chran Singh College (Jhajjer)</option>
+                </select><br><br>
+
+                <label for="course">Course:</label>
+                <select name="course" id="course" style="margin-left: 1.8rem;" required>
+                    <option value="select">Select</option>
+                    <option value="BCA">BCA</option>
+                    <option value="MCA">MCA</option>
+                    <option value="BBA">BBA</option>
+                    <option value="MBA">MBA</option>
+                </select><br><br>
+
+            </div>
+            <div class="right">
+                <h1 style="color: rgba(255, 255, 255, 0.938); text-align: center;">Contact Details</h1>
+
+                <label for="number">Mobile:</label>
+                <input type="number" id="number" name="mobile" style="margin-left: 2rem;" required>
+                <br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" style="margin-left: 2.5rem;" required>
+                <br><br>
+                <label for="district">District:</label>
+                <select name="district" id="district" style="margin-left: 2rem;" required>
+                    <option value="select">Select</option>
+                    <option value="Hisar">Hisar</option>
+                    <option value="Bhiwani">Bhiwani</option>
+                    <option value="Gurgaon">Gurgaon</option>
+                    <option value="Panipat">Panipat</option>
+                </select>
+                <br><br>
+                <label for="code">Zip Code:</label>
+                <input type="number" id="code" name="zipcode" style="margin-left: 1.3rem;" required>
+                <br><br>
+                <label for="textarea" style="position: relative; bottom: 1rem;">Address:</label>
+                <textarea id="textarea" name="address" style="margin-left: 1.8rem;" required></textarea>
+                <br><br>
+                <input type="radio" id="accept" name="terms" style="height: 16px; margin-left: -0.5rem;" required>
+                <label for="accept" style="font-size:16px; margin-left: -3rem;">Accept the <a href="#">Terms and
+                        Conditions</a> of your site. </label>
+                <br><br>
+                <input id="smt" type="submit" value="Submit" style="margin-left: 4rem; width: 60px;">
+                <input id="rst" type="reset" value="Reset" style="margin-left: 9rem; width: 60px;">
+            </div>
+        </form>
+    </div>
+    <div class="card-container">
+        <div id="carousel">
+        </div>
+        <div id="card">
+            <div id="card-img"></div>
+            <div class="text">
+                <h1>Real World Problem Solving</h1>
+                <span>Achieve long-term career success as a software engineer.<br> Unlike anywhere else, we don’t just
+                    focus on
+                    your interview preparation.<br> Through hands-on involvement in remarkable open source projects, we
+                    unlock<br>
+                    your true potential. This approach consistently produces software engineers ready <br>for a lasting
+                    and
+                    impactful career.</span>
+            </div>
+        </div>
+        <h1 style="margin-left: 40px;">Our Services</h1>
+        <div id="card2">
+            <div class="box1 border"></div>
+            <div class="box2 border"></div>
+            <div class="box3 border"></div>
+            <div class="box4 posi">
+                <h1>Hackathons</h1>
+                <span>
+                    We work with over 150 hiring partners that gives us a deep understanding of industry skills
+                    requirements
+                    and so our hackathons are designed in collaboration with these partners to make students go beyond
+                    just
+                    a competition. We aim to empower students and contribute to their overall development through
+                    community-building experiences to create impactful solutions in a short space of time.
+
+                </span>
+            </div>
+
+            <div class="box5 posi">
+                <h1>Open-Source Development</h1>
+                <span>At CodeQuotient School of Technology, our students work on open-source software development to
+                    handle
+                    the practice and real challenges in CodeQuotient Software Labs. While working with mentors from
+                    industry
+                    on live open-source projects, these students get ready for successful careers as software
+                    professionals.</span>
+            </div>
+            <div class="box6 posi">
+                <h1>SuperCoders</h1>
+                <span>Our students are paired with a practicing software engineer who serves as a mentor and provides
+                    support throughout the program. Based on individual’s capabilities, selected students undergo
+                    advanced
+                    training to get ready for the roles in product-based companies. These students demonstrate high
+                    software
+                    engineering skills and we call them SuperCoders.</span>
+            </div>
+        </div>
+        <div id="request">
+            <div id="msg">Type your Feedback
+                <button id="message">Message</button>
+            </div>
+            <p id="p"></p>
+        </div>
+
+
+        <div class="count-section-container" id="more-about-us">
+            <div class="count-section container">
+
+                <h1>CodeQuotient Impact That Makes Us Proud</h1>
+                <h5>Over the past 9+ years, we've proudly impacted many lives in our journey of meaningful change and
+                    growth.</h5>
+
+                <div class="all-counts-container">
+                    <div class="count-container-2">
+                        <p class="count">150+</p>
+                        <p class="count-name">Partner Companies</p>
+                        <p class="count-description">Aligned with our mission, running talent development programs to
+                            build their talent pool.</p>
+                    </div>
+                    <div class="count-container-2">
+                        <p class="count">1000+</p>
+                        <p class="count-name">SuperCoders Deployed</p>
+                        <p class="count-description">Who have trusted us, developed their skills and are now
+                            contributing to global tech companies.</p>
+                    </div>
+                    <div class="count-container-2">
+                        <p class="count">10+</p>
+                        <p class="count-name">Tech Domains</p>
+                        <p class="count-description">Supporting our partner companies across the range of technologies -
+                            AI/ML, Full Stack, Data Science, Cloud Computing, and more.</p>
+                    </div>
+                    <div class="count-container-2">
+                        <p class="count">600+</p>
+                        <p class="count-name">Partner Institutes</p>
+                        <p class="count-description">Across Tier 2/3 cities, which helps us in tapping the talented
+                            students from these cities.</p>
+                    </div>
+                </div>
+
+            </div>
+            <footer class="foot-panel1">
+                <spna class="my-footer">Back To Top</spna>
+                <div class="foot-panel2">
+                    <ul>
+                        <p style="position: relative;right: 90px;"> Get to Know Us</p>
+                        <a>Careers</a>
+                        <a>Blog</a>
+                        <a>About code</a>
+                        <a>Investor Relations</a>
+                        <a>coders</a>
+                        <a>data Science</a>
+                    </ul>
+                    <ul>
+                        <p style="position: relative;right: 90px;"> Get to Know Us</p>
+                        <a>Careers</a>
+                        <a>Blog</a>
+                        <a>About code</a>
+                        <a>Investor Relations</a>
+                        <a>coders</a>
+                        <a>data Science</a>
+                    </ul>
+                    <ul>
+                        <p style="position: relative;right: 90px;"> Get to Know Us</p>
+                        <a>Careers</a>
+                        <a>Blog</a>
+                        <a>About code</a>
+                        <a>Investor Relations</a>
+                        <a>coders</a>
+                        <a>data Science</a>
+                    </ul>
+                    <ul>
+                        <p style="position: relative;right: 90px;"> Get to Know Us</p>
+                        <a>Careers</a>
+                        <a>Blog</a>
+                        <a>About code</a>
+                        <a>Investor Relations</a>
+                        <a>coders</a>
+                        <a>data Science</a>
+                    </ul>
+                </div>
+                <div class="foot-panel3">
+                    <div class="foot-logo">
+
+                    </div>
+                </div>
+                <div class="foot-panel4">
+                    <div class="pages">
+                        <a> Conditions of Use</a>
+                        <a>Privacy Notice</a>
+                        <a>Your Ads Privacy Choices</a>
+                    </div>
+                    <div class="copy">
+                        © 1996-2024,CodeQuotient.com, Inc. or its affiliates
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <script src="index.js"></script>
+</body>
+
+</html>
