@@ -4,35 +4,38 @@
 
 
 <head>
-<link rel="stylesheet" href="discuss.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial- scale=1.0">
-<title>Question Manager</title>
+    <link rel="stylesheet" href="discuss.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial- scale=1.0">
+    <title>Question Manager</title>
 </head>
 
 
 <body>
-<h2 class="portal">Discussion Portal</h2>
-<div class="left">
-<input type="text" id="searchInput" placeholder="Search...">
-<div class="questionBox">
-<ul id="questionList">
-    
-</ul>
- 
-</div>
-</div>
-<div class="right">
-<h2>Welcome to Discussion Portal</h2>
-<h5>Enter a subject and questions to get started.</h5>
-<form id="questionForm">
-<input type="text" id="questionTitle" placeholder=" Subject" required><br>
-<textarea id="questionText" rows="7" cols="40" placeholder="Question" required></textarea>
-<button type="submit">Submit</button>
-</form>
-<div id="questionDetails"></div>
-</div>
-<script src="discuss.js"></script>
+    <h2 class="portal">Discussion Portal</h2>
+    <div class="container">
+        <div class="left">
+            <button id="newform">New Form</button>
+            <input type="text" id="searchInput" placeholder="Search...">
+            <div class="questionBox">
+                <ul id="questionList">
+
+                </ul>
+
+            </div>
+        </div>
+        <div class="right">
+            <h1>Welcome to Discussion Portal</h1>
+            <h4>Enter a subject and questions to get started.</h4>
+            <form id="questionForm">
+                <input type="text" id="questionTitle" placeholder="Subject" required><br>
+                <textarea id="questionText" rows="10" cols="70" placeholder="Question" required></textarea>
+                <button type="submit" id="sbmt">Submit</button>
+            </form>
+        </div>
+        <div id="questionDetails"></div>
+    </div>
+    <script src="discuss.js"></script>
 </body>
 
 
