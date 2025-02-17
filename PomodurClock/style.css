@@ -1,0 +1,96 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    margin: 0;
+}
+
+.container {
+    height: 460px;
+    width: 220px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.time {
+    height: 120px;
+    width: 120px;
+    background-color: rgba(0, 0, 0, 0.10);
+    color: aquamarine;
+    border: 8px solid aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    animation: timerGlow 4s linear infinite;
+}
+
+.session-break-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.sessiondiv button,
+.breakdiv button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 30px;
+    font-size: 16px;
+    margin: 2px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input {
+    width: 50px;
+    height: 25px;
+    text-align: center;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.button-group {
+    display: flex;
+    gap: 5px;
+}
+
+button {
+    padding: 8px 12px;
+    margin: 3px;
+    border: none;
+    background-color: brown;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: darkred;
+}

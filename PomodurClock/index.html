@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="loader"></div>
+
+        <div class="time"></div>
+        <span class="session-status">Session 1</span> 
+        <div class="session-break-container">
+            <div class="sessiondiv">
+                <label for="inputSession">Session Time</label><br>
+                <input type="text" id="inputSession" value="25"><br>
+                <div class="button-group">
+                    <button class="decreaseSession">-</button>
+                    <button class="increaseSession">+</button>
+                </div>
+            </div>
+
+            <div class="breakdiv">
+                <label for="inputBreak">Break Time</label><br>
+                <input type="text" id="inputBreak" value="5"><br>
+                <div class="button-group">
+                    <button class="decreaseBreak">-</button>
+                    <button class="increaseBreak">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-buttons">
+            <button class="start">Start</button>
+            <button class="reset">Reset</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

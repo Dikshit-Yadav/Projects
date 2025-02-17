@@ -40,6 +40,10 @@ function pt4() {
   }, 10);
 }
 
+while(1){
+
+}
+
 function startTimer() {
   running = true;
   pt4();
