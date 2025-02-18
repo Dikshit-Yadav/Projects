@@ -1,6 +1,7 @@
 const timeDisplay = document.querySelector('.time');
 const startButton = document.querySelector('.start');
 const resetButton = document.querySelector('.reset');
+const pauseButton = document.querySelector('.pause');
 
 const inputSession = document.getElementById('inputSession');
 const inputBreak = document.getElementById('inputBreak');
@@ -29,9 +30,10 @@ function updateTimerDisplay() {
 function startTimer() {
     if (timerInterval) return;
 
-    if (isSession) {
+    if (sessionTime === parseInt(inputSession.value) * 60 && isSession) {
         sessionCount++;
-    } else {
+    }
+    if (sessionTime === parseInt(inputBreak.value) * 60 && !isSession) {
         breakCount++;
     }
 
@@ -78,6 +80,12 @@ function resetTimer() {
     updateTimerDisplay();
 }
 
+function pauseTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
 function updateSessionTime(value) {
     let sessionMinutes = parseInt(inputSession.value) + value;
     if (sessionMinutes >= 1) {
@@ -123,5 +131,5 @@ decreaseBreakBtn.addEventListener('click', () => updateBreakTime(-1));
 
 startButton.addEventListener('click', startTimer);
 resetButton.addEventListener('click', resetTimer);
-
+pauseButton.addEventListener('click', pauseTimer);
 updateTimerDisplay();
