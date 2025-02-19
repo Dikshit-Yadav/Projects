@@ -96,10 +96,53 @@ function showFeedback(isCorrect) {
     const feedback = document.getElementById('feedback');
     feedback.innerText = isCorrect ? "Correct!" : "Incorrect!";
 }
+let p1 = document.querySelector(".p1");
+let p2 = document.querySelector(".p2");
+let p3 = document.querySelector(".p3");
+let count1 = 0;
+let count2 = 10;
+let count3 = 59;
+let timeId = 0;
+
+function runningTime() {
+    timeId = setTimeout(() => {
+        if (count3 === 0) {
+            count3 = 59;
+            if (count2 === 0) {
+                count2 = 59;
+            } else {
+                count2--;
+            }
+        } else {
+            count3--;
+        }
+        p2.textContent = count2 < 10 ? `0${count2}` : count2;
+        p3.textContent = count3 < 10 ? `0${count3}` : count3;
+
+        runningTime();
+    }, 1000);
+}
+
+
+runningTime();
+
+function quizTime() {
+    timeId = setTimeout(() => {
+        count1++;
+        p1.textContent = count1 < 10 ? `0${count1}` : count1;
+        if (count1 === 60) {
+            count1 = 0;
+            p1.textContent = "00";
+        }
+        quizTime();
+    }, 1000);
+}
+quizTime();
+
 function time() {
     setInterval(() => {
-        console.log("diskhit");
-    }, 30000);
+        handleSubmit();
+    }, 60000);
 }
 time();
 
@@ -113,10 +156,10 @@ function handleSubmit() {
         }
     });
 
-    if (!selectedOption) {
-        alert('Please select an option');
-        return;
-    }
+    // if (!selectedOption) {
+    //     alert('Please select an option');
+    //     return;
+    // }
 
     const question = questions[questionCount];
 
@@ -135,6 +178,7 @@ function handleSubmit() {
 function nextQuestion() {
     questionCount++;
     if (questionCount < questions.length) {
+        p1.textContent = "00";
         loadQuestion();
     } else {
         showResults();
@@ -165,9 +209,29 @@ function showFeedback(isCorrect) {
     }
 }
 
+function reset() {
+    questionCount = 0;
+    score = 0;
+
+    count1 = 0;
+    count2 = 10;
+    count3 = 59;
+
+    p1.textContent = "00";
+    p2.textContent = count2 < 10 ? `0${count2}` : count2;
+    p3.textContent = count3 < 10 ? `0${count3}` : count3;
+
+    clearTimeout(timeId);
+    runningTime();
+    quizTime();
+
+    loadQuestion();
+}
+
 function restartQuiz() {
     questionCount = 0;
     score = 0;
+    reset();
     loadQuestion();
     document.getElementById('restart-button').style.display = 'none';
 }

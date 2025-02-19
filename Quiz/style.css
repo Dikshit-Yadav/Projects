@@ -17,6 +17,43 @@ body {
     width: 100%;
 }
 
+.quizTime {
+    display: flex;
+    font-size: large;
+    font-weight: 600;
+    gap: 5px;
+}
+
+.questionTime {
+    display: flex;
+    font-size: large;
+    font-weight: 600;
+    position: relative;
+    left: 85%;
+    bottom: 85px;
+}
+
+/* .p1{
+    position: relative;
+    left: 77%;
+    bottom: 61px;
+    font-size: large;
+    font-weight: 600;
+}
+.p2{
+    position: relative;
+    left: 85%;
+    bottom: 100px;
+    font-size: large;
+    font-weight: 600;
+} */
+.quizTime {
+    position: relative;
+    bottom: 15px;
+    font-size: large;
+    font-weight: 600;
+}
+
 h1 {
     text-align: center;
     color: #333;
