@@ -96,6 +96,12 @@ function showFeedback(isCorrect) {
     const feedback = document.getElementById('feedback');
     feedback.innerText = isCorrect ? "Correct!" : "Incorrect!";
 }
+function time() {
+    setInterval(() => {
+        console.log("diskhit");
+    }, 30000);
+}
+time();
 
 function handleSubmit() {
     const options = document.querySelectorAll('input[name="option"]');
