@@ -69,11 +69,67 @@ const questions = [
 
 let questionCount = 0;
 let score = 0;
+let running = false;
+let count1 = 0;
+let count2 = 10;
+let count3 = 59;
+let timeId = 0;
 
+let p1 = document.querySelector(".p1");
+let p2 = document.querySelector(".p2");
+let p3 = document.querySelector(".p3");
+let start = document.querySelector(".start");
+let quizcontainer = document.querySelector(".quiz-container");
+
+start.addEventListener("click", () => {
+    quizcontainer.style.visibility = "visible";
+    start.style.display = "none";
+    running = true;
+    runningTime();
+    quizTime();
+    loadQuestion();
+});
+
+function runningTime() {
+    timeId = setTimeout(() => {
+        if (count3 === 0) {
+            count3 = 59;
+            if (count2 === 0) {
+                showResults();
+            } else {
+                count2--;
+            }
+        } else {
+            count3--;
+        }
+        p2.textContent = count2 < 10 ? `0${count2}` : count2;
+        p3.textContent = count3 < 10 ? `0${count3}` : count3;
+        runningTime();
+    }, 1000);
+}
+
+function quizTime() {
+    timeId = setTimeout(() => {
+        count1++;
+        p1.textContent = count1 < 10 ? `0${count1}` : count1;
+        if (count1 === 59) {
+            count1 = 0;
+            p1.textContent = "00";
+        }
+        quizTime();
+    }, 1000);
+}
+
+function time() {
+    setInterval(() => {
+        handleSubmit();
+        nextQuestion();
+    }, 60000);
+}
+time();
 function loadQuestion() {
     const quizContainer = document.getElementById('quiz');
     const question = questions[questionCount];
-
     quizContainer.innerHTML = `
         <div class="question">${question.title}</div>
         <ul class="options">
@@ -85,75 +141,12 @@ function loadQuestion() {
             `).join('')}
         </ul>
         <button id="submit-button">Submit Answer</button>
+        <button id="next-button" style="display: none;">Next Question</button>
         <div id="feedback" style="margin-top:10px;"></div>
     `;
 
-    document.getElementById('next-button').style.display = 'none';
-    document.getElementById('restart-button').style.display = 'none';
+    document.getElementById('next-button').addEventListener('click', nextQuestion);
 }
-
-function showFeedback(isCorrect) {
-    const feedback = document.getElementById('feedback');
-    feedback.innerText = isCorrect ? "Correct!" : "Incorrect!";
-}
-let p1 = document.querySelector(".p1");
-let p2 = document.querySelector(".p2");
-let p3 = document.querySelector(".p3");
-let start = document.querySelector(".start");
-let quizcontainer = document.querySelector(".quiz-container");
-let count1 = 0;
-let count2 = 10;
-let count3 = 59;
-let timeId = 0;
-    start.addEventListener("click",()=>{
-        quizcontainer.style.visibility =  "visible";
-        start.style.visibility = "hidden";
-    })
-function runningTime() {
-
-    
-    timeId = setTimeout(() => {
-        if (count3 === 0) {
-            count3 = 59;
-            if (count2 === 0) {
-               // count2 = 10;
-                showResults()
-            } else {
-                count2--;
-            }
-        } else {
-            count3--;
-        }
-        p2.textContent = count2 < 10 ? `0${count2}` : count2;
-        p3.textContent = count3 < 10 ? `0${count3}` : count3;
-
-        runningTime();
-    }, 1000);
-}
-
-
-runningTime();
-
-function quizTime() {
-    timeId = setTimeout(() => {
-        count1++;
-        p1.textContent = count1 < 10 ? `0${count1}` : count1;
-        if (count1 === 60) {
-            count1 = 0;
-            p1.textContent = "00";
-        }
-        quizTime();
-    }, 1000);
-}
-quizTime();
-
-function time() {
-    setInterval(() => {
-        handleSubmit();
-        nextQuestion();
-    }, 60000);
-}
-time();
 
 function handleSubmit() {
     const options = document.querySelectorAll('input[name="option"]');
@@ -187,15 +180,23 @@ function handleSubmit() {
 function nextQuestion() {
     questionCount++;
     if (questionCount < questions.length) {
-        p1.textContent = "00";
+        p1.textContent = "00";       
+        count1 = 0;
         loadQuestion();
     } else {
+        running = false;
+        clearTimeout(timeId);
         showResults();
     }
 }
 
 function showResults() {
     const quizContainer = document.getElementById('quiz');
+    document.querySelector(".timer-container").style.visibility = "hidden";
+    quizContainer.style.position = "relative";
+    quizContainer.style.bottom = "50px";
+    document.querySelector("h1").style.position = "relative";
+    document.querySelector("h1").style.bottom = "70px";
     quizContainer.innerHTML = `
         <h2>Your Score: ${score}/${questions.length}</h2>
         <h3>Correct Answers:</h3>
@@ -206,6 +207,9 @@ function showResults() {
     document.getElementById('next-button').style.display = 'none';
     document.getElementById('restart-button').style.display = 'block';
 }
+
+
+
 
 function showFeedback(isCorrect) {
     const feedback = document.getElementById('feedback');
@@ -221,15 +225,12 @@ function showFeedback(isCorrect) {
 function reset() {
     questionCount = 0;
     score = 0;
-
     count1 = 0;
     count2 = 10;
     count3 = 59;
-
     p1.textContent = "00";
     p2.textContent = count2 < 10 ? `0${count2}` : count2;
     p3.textContent = count3 < 10 ? `0${count3}` : count3;
-
     clearTimeout(timeId);
     runningTime();
     quizTime();
@@ -241,10 +242,12 @@ function restartQuiz() {
     questionCount = 0;
     score = 0;
     reset();
+
+    document.querySelector(".timer-container").style.visibility = "visible";
+
     loadQuestion();
     document.getElementById('restart-button').style.display = 'none';
 }
-
 document.addEventListener('DOMContentLoaded', () => {
     loadQuestion();
     document.getElementById('next-button').addEventListener('click', nextQuestion);
