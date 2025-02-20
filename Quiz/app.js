@@ -99,17 +99,25 @@ function showFeedback(isCorrect) {
 let p1 = document.querySelector(".p1");
 let p2 = document.querySelector(".p2");
 let p3 = document.querySelector(".p3");
+let start = document.querySelector(".start");
+let quizcontainer = document.querySelector(".quiz-container");
 let count1 = 0;
 let count2 = 10;
 let count3 = 59;
 let timeId = 0;
-
+    start.addEventListener("click",()=>{
+        quizcontainer.style.visibility =  "visible";
+        start.style.visibility = "hidden";
+    })
 function runningTime() {
+
+    
     timeId = setTimeout(() => {
         if (count3 === 0) {
             count3 = 59;
             if (count2 === 0) {
-                count2 = 59;
+               // count2 = 10;
+                showResults()
             } else {
                 count2--;
             }
@@ -142,6 +150,7 @@ quizTime();
 function time() {
     setInterval(() => {
         handleSubmit();
+        nextQuestion();
     }, 60000);
 }
 time();
