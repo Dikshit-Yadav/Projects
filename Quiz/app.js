@@ -211,7 +211,7 @@ function handleSubmit() {
     } else {
         showFeedback(false);
     }
-
+    
     options.forEach(option => option.disabled = true);
     document.getElementById('submit-button').style.display = 'none';
     document.getElementById('next-button').style.display = 'block';

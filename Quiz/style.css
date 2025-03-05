@@ -8,6 +8,7 @@ body {
     margin: 0;
     flex-direction: column;
 }
+
 .text {
     font-size: 60px;
     font-weight: bold;
@@ -19,15 +20,17 @@ body {
     top: 30%;
     left: 40%;
 }
-.score{
+
+.score {
     position: absolute;
     left: 200px;
 }
 
-.k{
+.k {
     position: absolute;
     right: 277px;
 }
+
 .quiz-container {
     /* visibility: hidden; */
     background: #ffffff;
@@ -99,7 +102,7 @@ label {
     transition: 0.3s;
 }
 
-input[type="radio"]:checked + label {
+input[type="radio"]:checked+label {
     background: #667eea;
     color: white;
 }
