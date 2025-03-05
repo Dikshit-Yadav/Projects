@@ -19,9 +19,16 @@ body {
     top: 30%;
     left: 40%;
 }
-
+.score{
+    position: absolute;
+    left: 200px;
+}
+.k{
+    position: absolute;
+    right: 277px;
+}
 .quiz-container {
-    visibility: hidden;
+    /* visibility: hidden; */
     background: #ffffff;
     padding: 30px;
     border-radius: 12px;

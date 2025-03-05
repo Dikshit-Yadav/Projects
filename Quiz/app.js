@@ -70,10 +70,11 @@ const questions = [
 let questionCount = 0;
 let score = 0;
 let running = false;
-let count1 = 0;
+let count1 = 59;
 let count2 = 10;
 let count3 = 59;
 let timeId = 0;
+let timeInterval;
 
 let p1 = document.querySelector(".p1");
 let p2 = document.querySelector(".p2");
@@ -92,9 +93,9 @@ start.addEventListener("click", () => {
 
 function runningTime() {
     timeId = setTimeout(() => {
-        if (count3 === 0) {
+        if (count3 == 0) {
             count3 = 59;
-            if (count2 === 0) {
+            if (count2 == 0) {
                 showResults();
             } else {
                 count2--;
@@ -109,44 +110,82 @@ function runningTime() {
 }
 
 function quizTime() {
-    timeId = setTimeout(() => {
-        count1++;
-        p1.textContent = count1 < 10 ? `0${count1}` : count1;
-        if (count1 === 59) {
-            count1 = 0;
-            p1.textContent = "00";
+    timeInterval = setInterval(() => {
+        if (count1 == 0) {
+            handleSubmit();
+            nextQuestion();
+        } else {
+            count1--;
+            p1.textContent = count1 < 10 ? `0${count1}` : count1;
         }
-        quizTime();
     }, 1000);
 }
 
-function time() {
-    setInterval(() => {
-        handleSubmit();
-        nextQuestion();
-    }, 60000);
+// function time() {
+//     timeInterval = setInterval(() => {
+//         count1 = 0;
+//         handleSubmit();
+//         nextQuestion();
+//     }, 60000);
+// }
+
+function stopTimeInterval() {
+    clearInterval(timeId);
+    clearInterval(timeInterval);
 }
-time();
+
 function loadQuestion() {
     const quizContainer = document.getElementById('quiz');
     const question = questions[questionCount];
-    quizContainer.innerHTML = `
-        <div class="question">${question.title}</div>
-        <ul class="options">
-            ${question.options.map((option, index) => `
-                <li>
-                    <input type="radio" name="option" id="option${index}" value="${option}">
-                    <label for="option${index}">${option}</label>
-                </li>
-            `).join('')}
-        </ul>
-        <button id="submit-button">Submit Answer</button>
-        <button id="next-button" style="display: none;">Next Question</button>
-        <div id="feedback" style="margin-top:10px;"></div>
-    `;
+
+    const questionElement = document.createElement('div');
+    questionElement.className = 'question';
+    questionElement.textContent = question.title;
+
+    const optionsList = document.createElement('ul');
+    optionsList.className = 'options';
+
+    question.options.forEach((option, index) => {
+        const listItem = document.createElement('li');
+
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'option';
+        input.id = `option${index}`;
+        input.value = option;
+
+        const label = document.createElement('label');
+        label.htmlFor = `option${index}`;
+        label.textContent = option;
+
+        listItem.appendChild(input);
+        listItem.appendChild(label);
+        optionsList.appendChild(listItem);
+    });
+
+    quizContainer.innerHTML = '';
+    quizContainer.appendChild(questionElement);
+    quizContainer.appendChild(optionsList);
+
+    const submitButton = document.createElement('button');
+    submitButton.id = 'submit-button';
+    submitButton.textContent = 'Submit Answer';
+    quizContainer.appendChild(submitButton);
+
+    const nextButton = document.createElement('button');
+    nextButton.id = 'next-button';
+    nextButton.textContent = 'Next Question';
+    nextButton.style.display = 'none';
+    quizContainer.appendChild(nextButton);
+
+    const feedback = document.createElement('div');
+    feedback.id = 'feedback';
+    feedback.style.marginTop = '10px';
+    quizContainer.appendChild(feedback);
 
     document.getElementById('next-button').addEventListener('click', nextQuestion);
 }
+
 
 function handleSubmit() {
     const options = document.querySelectorAll('input[name="option"]');
@@ -167,6 +206,7 @@ function handleSubmit() {
 
     if (selectedOption === question.correct) {
         score += question.score;
+        document.querySelector(".score").innerHTML=score;
         showFeedback(true);
     } else {
         showFeedback(false);
@@ -180,35 +220,49 @@ function handleSubmit() {
 function nextQuestion() {
     questionCount++;
     if (questionCount < questions.length) {
-        p1.textContent = "00";       
-        count1 = 0;
+        p1.textContent = "59";
+        count1 = 59;
         loadQuestion();
     } else {
+        // stopTimer(); 
+        stopTimeInterval();
         running = false;
-        clearTimeout(timeId);
         showResults();
     }
 }
 
 function showResults() {
     const quizContainer = document.getElementById('quiz');
-    document.querySelector(".timer-container").style.visibility = "hidden";
     quizContainer.style.position = "relative";
     quizContainer.style.bottom = "50px";
-    document.querySelector("h1").style.position = "relative";
-    document.querySelector("h1").style.bottom = "70px";
-    quizContainer.innerHTML = `
-        <h2>Your Score: ${score}/${questions.length}</h2>
-        <h3>Correct Answers:</h3>
-        <ul>
-            ${questions.map(q => `<li>${q.title} - Correct answer: ${q.correct}</li>`).join('')}
-        </ul>
-    `;
+
+    const header = document.querySelector("h1");
+    header.style.position = "relative";
+    header.style.bottom = "70px";
+    quizContainer.innerHTML = '';
+
+    const scoreHeading = document.createElement('h2');
+    scoreHeading.textContent = `Your Score: ${score}/${questions.length}`;
+    quizContainer.appendChild(scoreHeading);
+
+    const correctAnswersHeading = document.createElement('h3');
+    correctAnswersHeading.textContent = 'Correct Answers:';
+    quizContainer.appendChild(correctAnswersHeading);
+
+    const correctAnswersList = document.createElement('ul');
+    questions.forEach(q => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${q.title} - Correct answer: ${q.correct}`;
+        correctAnswersList.appendChild(listItem);
+    });
+    quizContainer.appendChild(correctAnswersList);
     document.getElementById('next-button').style.display = 'none';
-    document.getElementById('restart-button').style.display = 'block';
+    const restartButton = document.getElementById('restart-button');
+    restartButton.style.display = 'block';
+
+    stopTimer();
+    stopTimeInterval();
 }
-
-
 
 
 function showFeedback(isCorrect) {
@@ -225,16 +279,15 @@ function showFeedback(isCorrect) {
 function reset() {
     questionCount = 0;
     score = 0;
-    count1 = 0;
+    count1 = 59;
     count2 = 10;
     count3 = 59;
-    p1.textContent = "00";
+    p1.textContent = "59";
     p2.textContent = count2 < 10 ? `0${count2}` : count2;
     p3.textContent = count3 < 10 ? `0${count3}` : count3;
     clearTimeout(timeId);
     runningTime();
     quizTime();
-
     loadQuestion();
 }
 
@@ -242,13 +295,12 @@ function restartQuiz() {
     questionCount = 0;
     score = 0;
     reset();
-
-    document.querySelector(".timer-container").style.visibility = "visible";
+    // document.querySelector(".timer-container").style.visibility = "visible";
 
     loadQuestion();
     document.getElementById('restart-button').style.display = 'none';
 }
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     loadQuestion();
     document.getElementById('next-button').addEventListener('click', nextQuestion);
     document.getElementById('restart-button').addEventListener('click', restartQuiz);
