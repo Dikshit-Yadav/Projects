@@ -1,4 +1,4 @@
-const questions = [
+let questions = [
     {
         title: "Who invented C language?",
         options: ["Dennis", "Dennis Ritchie", "Ritchie", "Rome"],
@@ -18,7 +18,7 @@ const questions = [
         score: 1
     },
     {
-        title: "Which HTML tag is used to define an internal CSS?",
+        title: "Which HTML tag is used to define an leternal CSS?",
         options: ["Style", "Script", "Link", "None of these"],
         correct: "Style",
         score: 1
@@ -56,9 +56,9 @@ const questions = [
     {
         title: `What is the output of the following C code?\n
     #include <stdio.h>\n
-    int main() {\n
-        int a = 5, b = 10;\n
-        printf("%d", a + b);\n
+    let main() {\n
+        let a = 5, b = 10;\n
+        prletf("%d", a + b);\n
         return 0;\n
     }`,
         options: ["10", "5", "15", "0"],
@@ -67,6 +67,7 @@ const questions = [
     }
 ];
 
+const userAnswers = [];
 let questionCount = 0;
 let score = 0;
 let running = false;
@@ -74,7 +75,7 @@ let count1 = 59;
 let count2 = 10;
 let count3 = 59;
 let timeId = 0;
-let timeInterval;
+let timesetInterval;
 
 let p1 = document.querySelector(".p1");
 let p2 = document.querySelector(".p2");
@@ -82,7 +83,13 @@ let p3 = document.querySelector(".p3");
 let start = document.querySelector(".start");
 let quizcontainer = document.querySelector(".quiz-container");
 
+function shuffleQuestions() {
+    return [...questions].sort(() => Math.random() - 0.5);
+}
+
+
 start.addEventListener("click", () => {
+    questions = shuffleQuestions(); 
     quizcontainer.style.visibility = "visible";
     start.style.display = "none";
     running = true;
@@ -110,7 +117,7 @@ function runningTime() {
 }
 
 function quizTime() {
-    timeInterval = setInterval(() => {
+    timesetInterval = setInterval(() => {
         if (count1 == 0) {
             handleSubmit();
             nextQuestion();
@@ -121,17 +128,9 @@ function quizTime() {
     }, 1000);
 }
 
-// function time() {
-//     timeInterval = setInterval(() => {
-//         count1 = 0;
-//         handleSubmit();
-//         nextQuestion();
-//     }, 60000);
-// }
-
-function stopTimeInterval() {
+function stopTimesetInterval() {
     clearInterval(timeId);
-    clearInterval(timeInterval);
+    clearInterval(timesetInterval);
 }
 
 function loadQuestion() {
@@ -178,11 +177,6 @@ function loadQuestion() {
     nextButton.style.display = 'none';
     quizContainer.appendChild(nextButton);
 
-    const feedback = document.createElement('div');
-    feedback.id = 'feedback';
-    feedback.style.marginTop = '10px';
-    quizContainer.appendChild(feedback);
-
     document.getElementById('next-button').addEventListener('click', nextQuestion);
 }
 
@@ -204,14 +198,16 @@ function handleSubmit() {
 
     const question = questions[questionCount];
 
+    userAnswers.push({
+        question: question.title,
+        correctAnswer: question.correct,
+        userAnswer: selectedOption || "No Answer"
+    });
+
     if (selectedOption === question.correct) {
         score += question.score;
-        document.querySelector(".score").innerHTML=score;
-        showFeedback(true);
-    } else {
-        showFeedback(false);
-    }
-    
+    } 
+
     options.forEach(option => option.disabled = true);
     document.getElementById('submit-button').style.display = 'none';
     document.getElementById('next-button').style.display = 'block';
@@ -225,7 +221,7 @@ function nextQuestion() {
         loadQuestion();
     } else {
         // stopTimer(); 
-        stopTimeInterval();
+        stopTimesetInterval();
         running = false;
         showResults();
     }
@@ -245,36 +241,31 @@ function showResults() {
     scoreHeading.textContent = `Your Score: ${score}/${questions.length}`;
     quizContainer.appendChild(scoreHeading);
 
-    const correctAnswersHeading = document.createElement('h3');
-    correctAnswersHeading.textContent = 'Correct Answers:';
-    quizContainer.appendChild(correctAnswersHeading);
+    const answersHeading = document.createElement('h3');
+    answersHeading.textContent = 'Your Answers:';
+    quizContainer.appendChild(answersHeading);
 
-    const correctAnswersList = document.createElement('ul');
-    questions.forEach(q => {
+    const answersList = document.createElement('ul');
+
+    userAnswers.forEach((answer) => {
         const listItem = document.createElement('li');
-        listItem.textContent = `${q.title} - Correct answer: ${q.correct}`;
-        correctAnswersList.appendChild(listItem);
+        listItem.innerHTML = `<strong>${answer.question}</strong> <br> 
+            Your Answer: <span style="color: ${answer.userAnswer === answer.correctAnswer ? 'green' : 'red'}">
+            ${answer.userAnswer || "No Answer"}</span> <br>
+
+            Correct Answer: <span style="color: green;">${answer.correctAnswer}</span>`;
+
+        answersList.appendChild(listItem);
     });
-    quizContainer.appendChild(correctAnswersList);
+
+    quizContainer.appendChild(answersList);
+
     document.getElementById('next-button').style.display = 'none';
-    const restartButton = document.getElementById('restart-button');
-    restartButton.style.display = 'block';
+    document.getElementById('restart-button').style.display = 'block';
 
-    stopTimer();
-    stopTimeInterval();
+    stopTimesetInterval();
 }
 
-
-function showFeedback(isCorrect) {
-    const feedback = document.getElementById('feedback');
-    if (isCorrect) {
-        feedback.innerText = "Correct!";
-        feedback.className = "correct";
-    } else {
-        feedback.innerText = "Incorrect!";
-        feedback.className = "incorrect";
-    }
-}
 
 function reset() {
     questionCount = 0;
@@ -292,13 +283,12 @@ function reset() {
 }
 
 function restartQuiz() {
-    questionCount = 0;
-    score = 0;
-    reset();
-    // document.querySelector(".timer-container").style.visibility = "visible";
-
-    loadQuestion();
     document.getElementById('restart-button').style.display = 'none';
+    questionCount = 0;
+    userAnswers.length = 0;
+    score = 0;
+    questions = shuffleQuestions();
+    reset();
 }
 document.addEventListener("DOMContentLoaded", () => {
     loadQuestion();

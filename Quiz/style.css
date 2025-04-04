@@ -32,7 +32,7 @@ body {
 }
 
 .quiz-container {
-    /* visibility: hidden; */
+    visibility: hidden;
     background: #ffffff;
     padding: 30px;
     border-radius: 12px;
